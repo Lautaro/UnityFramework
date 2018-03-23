@@ -13,6 +13,12 @@ public class SoundManager : MonoBehaviour
         
     }
 
+    public static void PlaySFX(string sfxName, float pitch)
+    {
+        instance.PlaySfxByName(sfxName, pitch);
+
+    }
+
     #endregion
 
     public List<string> pathsToFolders;
@@ -111,6 +117,14 @@ public class SoundManager : MonoBehaviour
         PlaySfx(freeAudioPlayer, audioClipToBePlayed);
     }
 
+    void PlaySfxByName(string sfxName, float pitch)
+    {
+        var freeAudioPlayer = GetAudioPlayer();
+        var sfxToBePlayed = GetSfxByName(sfxName);
+        var audioClipToBePlayed = GetRandomClipFromSfx(sfxToBePlayed); ;
+        PlaySfx(freeAudioPlayer, audioClipToBePlayed,null , null, pitch);
+    }
+
     private AudioClip GetRandomClipFromSfx(Sfx sfxToBePlayed)
     {
         AudioClip acToBePlayed;
@@ -173,6 +187,11 @@ public class SoundManager : MonoBehaviour
         {
             pitch = 0f;
         }
+
+        //audioPlayer.volume = volume ?? 0;
+        audioPlayer.pitch = pitch ?? 0;
+        print("P : " + audioPlayer.pitch);
+        print(audioPlayer.volume);
 
         if (position == null)
         {
