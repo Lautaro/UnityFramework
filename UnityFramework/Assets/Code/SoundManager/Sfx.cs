@@ -64,8 +64,7 @@ public class Sfx
 
     public Sfx()
     {
-        audioClips = new List<AudioClip>();
-        
+        audioClips = new List<AudioClip>();        
     }
 
 

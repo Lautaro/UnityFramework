@@ -4,203 +4,216 @@ using UnityEngine;
 using System.Linq;
 using System;
 
-public class SoundManager : MonoBehaviour
+namespace SoundManager
 {
-    #region Static Methods
-    public static void PlaySFX(string sfxName)
+
+    public class SoundManager : MonoBehaviour
     {
-        instance.PlaySfxByName(sfxName);
-        
-    }
-
-    public static void PlaySFX(string sfxName, float pitch)
-    {
-        instance.PlaySfxByName(sfxName, pitch);
-
-    }
-
-    #endregion
-
-    public List<string> pathsToFolders;
-    static SoundManager instance ; 
-    public List<Sfx> AllSfxs;
-    List<AudioSource> audioPlayers;
-
-    private void Awake()
-    {
-        instance = this;
-    
-        AllSfxs = new List<Sfx>();
-        audioPlayers = new List<AudioSource>();
-
-        // load all sound files in source folders
-
-        List<AudioClip> allSoundFiles = new List<AudioClip>();
-
-        foreach (string folderPath in pathsToFolders)
+        #region Static Methods
+        public static void PlaySFX(GameObject source, string sfxName)
         {
-           var filteredPath = folderPath;
-
-            if (!filteredPath.EndsWith("/"))
-            {
-                filteredPath = filteredPath + "/";
-            }
-
-            if (filteredPath.StartsWith("/"))
-            {
-                filteredPath = filteredPath.TrimStart('/');
-            }
-            
-            var acs= Resources.LoadAll<AudioClip>(filteredPath );
-            allSoundFiles.AddRange(acs);
-
-            print("Loaded " + allSoundFiles.Count + " sfx:s in folder: " + filteredPath);
+            instance.PlaySfxByName(sfxName, source);
         }
-            
-       
 
-
-        /* 
-         * foreach sound 
-         * 1. If it has a divider ("-") in the filename only use the bit on the left. This will be the identifier
-         * 2. If no SFX with SFXName as the identifier Create a sfx obect and give it the identifier as SfxName
-         * 3. If there already is a SFX with the same SfxName then add the sound as a audioClip in the SFX         
-        */
-
-        // Load all sfx in folder 
-
-        foreach (AudioClip audioClip in allSoundFiles)
+        public static void PlaySFX(GameObject source, string sfxName, float pitch)
         {
-            var acName = audioClip.name;
+            instance.PlaySfxByName(sfxName, source, pitch);
+        }
 
-            //1.If it has a divider("-") in the filename only use the bit on the left.
-            if (acName.Contains("-"))
+        #endregion
+
+        public List<string> pathsToFolders;
+        static SoundManager instance;
+        public List<Sfx> AllSfxs;
+        //List<AudioSource> audioPlayers;
+
+        #region Setup
+
+        private void Awake()
+        {
+            instance = this;
+
+            AllSfxs = new List<Sfx>();
+
+            List<AudioClip> allSoundFiles = new List<AudioClip>();
+
+            // FOREACH FOLDER PATHS LOAD AUDIOCLIPS
+            foreach (string folderPath in pathsToFolders)
             {
-                acName = acName.Substring(0, acName.IndexOf("-"));
+                var filteredPath = folderPath;
+
+                if (!filteredPath.EndsWith("/"))
+                {
+                    filteredPath = filteredPath + "/";
+                }
+
+                if (filteredPath.StartsWith("/"))
+                {
+                    filteredPath = filteredPath.TrimStart('/');
+                }
+                var acs = Resources.LoadAll<AudioClip>(filteredPath);
+
+                allSoundFiles.AddRange(acs);
+
             }
 
 
-            var duplicatedSfx = AllSfxs.SingleOrDefault(sfx => sfx.SfxName == acName);
-            if (duplicatedSfx == null)
+            // MAKE AUDIOCLIPS OF EVERY SOUND
+            foreach (AudioClip audioClip in allSoundFiles)
             {
-                //2.If no SFX with SFXName as the identifier Create a sfx obect and give it the identifier as SfxName
-                var newSfx = new Sfx()
+                var acName = audioClip.name;
+                print(audioClip.name);
+
+                //1.If it has a divider("-") in the filename only use the bit on the left.
+                if (acName.Contains("-"))
                 {
-                    SfxName = acName,
-                    audioClips = new List<AudioClip>()
+                    acName = acName.Substring(0, acName.IndexOf("-"));
+                }
+
+
+                var duplicatedSfx = AllSfxs.SingleOrDefault(sfx => sfx.SfxName == acName);
+                if (duplicatedSfx == null)
+                {
+                    //2.If no SFX with SFXName as the identifier Create a sfx obect and give it the identifier as SfxName
+                    var newSfx = new Sfx()
+                    {
+                        SfxName = acName,
+                        audioClips = new List<AudioClip>()
                     {
                         audioClip
                     }
-                };
+                    };
 
-                AllSfxs.Add(newSfx);
+                    AllSfxs.Add(newSfx);
+                }
+                else
+                {
+                    //3.If there already is a SFX with the same SfxName then add the sound as a audioClip in the SFX
+                    duplicatedSfx.audioClips.Add(audioClip);
 
+                }
+            }
+        }
+
+        #endregion
+
+        #region Play Sfxs
+
+        void PlaySfxByName(string sfxName, GameObject source)
+        {
+            var freeAudioPlayer = GetAudioPlayer(source);
+            var sfxToBePlayed = GetSfxByName(sfxName);
+            var audioClipToBePlayed = GetRandomClipFromSfx(sfxToBePlayed); ;
+            PlaySfx(freeAudioPlayer, audioClipToBePlayed);
+        }
+
+        void PlaySfxByName(string sfxName, GameObject source, float pitch)
+        {
+            var freeAudioPlayer = GetAudioPlayer(source);
+            var sfxToBePlayed = GetSfxByName(sfxName);
+            var audioClipToBePlayed = GetRandomClipFromSfx(sfxToBePlayed); ;
+            PlaySfx(freeAudioPlayer, audioClipToBePlayed, null, null, pitch);
+        }
+
+        private void PlaySfx(AudioSource audioPlayer, AudioClip acToBePlayed, Transform position = null, float? volume = null, float? pitch = null)
+        {
+
+            audioPlayer.clip = acToBePlayed;
+
+            if (volume == null)
+            {
+                volume = 1f;
+            }
+
+            if (pitch == null)
+            {
+                pitch = 1f;
+            }
+
+            //audioPlayer.volume = volume ?? 0;
+            audioPlayer.pitch = pitch ?? 1;
+            print("P : " + audioPlayer.pitch);
+            print(audioPlayer.volume);
+
+            if (position == null)
+            {
+                audioPlayer.Play();
             }
             else
             {
-                //3.If there already is a SFX with the same SfxName then add the sound as a audioClip in the SFX
-                duplicatedSfx.audioClips.Add(audioClip);
-
+                // This is BAD!!!
+                AudioSource.PlayClipAtPoint(acToBePlayed, position.position, volume.Value);
             }
         }
 
-        print("Amount of Sfx: " + AllSfxs.Count);
-                
+        #endregion
+
+        #region Internal Helpers
+
+        private AudioClip GetRandomClipFromSfx(Sfx sfxToBePlayed)
+        {
+            AudioClip acToBePlayed;
+
+            if (sfxToBePlayed.audioClips.Count > 1)
+            {
+                print("AMount of Clips: " + sfxToBePlayed.audioClips.Count);
+                var randomness = UnityEngine.Random.Range(0, sfxToBePlayed.audioClips.Count);
+
+                acToBePlayed = sfxToBePlayed.audioClips[randomness];
+            }
+            else
+            {
+                acToBePlayed = sfxToBePlayed.audioClips[0];
+            }
+
+            return acToBePlayed;
+        }
+
+        private Sfx GetSfxByName(string name)
+        {
+
+            var returnSfx = AllSfxs.FirstOrDefault(sfx => sfx.SfxName == name);
+
+            if (returnSfx == null)
+            {
+                Debug.LogWarning("Sfx by name not found: " + name);
+            }
+
+            return returnSfx;
+
+        }
+
+        private AudioSource GetAudioPlayer(GameObject source)
+        {
+            var allAudioSources = source.GetComponents<AudioSource>();
+
+            AudioSource ap = null;
+            if (allAudioSources.Any(player => !player.isPlaying))
+            {
+                ap = allAudioSources.First(player => !player.isPlaying);
+            }
+            else
+            {
+                ap = source.AddComponent<AudioSource>();
+            }
+            return ap;
+
+        }
+
+        #endregion
     }
 
 
-    void PlaySfxByName(string sfxName)
+    public static class SoundManagerExtensions
     {
-        var freeAudioPlayer = GetAudioPlayer();
-        var sfxToBePlayed = GetSfxByName(sfxName);
-        var audioClipToBePlayed = GetRandomClipFromSfx(sfxToBePlayed); ;
-        PlaySfx(freeAudioPlayer, audioClipToBePlayed);
-    }
-
-    void PlaySfxByName(string sfxName, float pitch)
-    {
-        var freeAudioPlayer = GetAudioPlayer();
-        var sfxToBePlayed = GetSfxByName(sfxName);
-        var audioClipToBePlayed = GetRandomClipFromSfx(sfxToBePlayed); ;
-        PlaySfx(freeAudioPlayer, audioClipToBePlayed,null , null, pitch);
-    }
-
-    private AudioClip GetRandomClipFromSfx(Sfx sfxToBePlayed)
-    {
-        AudioClip acToBePlayed;
-
-        if (sfxToBePlayed.audioClips.Count > 1)
+        public static void PlaySFX(this GameObject source, string sfxName)
         {
-            print("AMount of Clips: " + sfxToBePlayed.audioClips.Count);
-            var randomness = UnityEngine.Random.Range(0, sfxToBePlayed.audioClips.Count);
-
-            acToBePlayed = sfxToBePlayed.audioClips[randomness];
-        }
-        else
-        {
-            acToBePlayed = sfxToBePlayed.audioClips[0];
+            SoundManager.PlaySFX(source, sfxName);
         }
 
-        return acToBePlayed;
-    }
-
-    private Sfx GetSfxByName(string name)
-    {
-
-        var returnSfx = AllSfxs.FirstOrDefault(sfx => sfx.SfxName == name);
-
-        if (returnSfx == null)
+        public static void PlaySFX(this GameObject source, string sfxName, float pitch)
         {
-            Debug.LogWarning("Sfx by name not found: " + name);
-        }
-
-        return returnSfx;
-
-    }
-
-    private AudioSource GetAudioPlayer()
-    {
-        AudioSource ap = null;
-        if (audioPlayers.Any(player => !player.isPlaying))
-        {
-            ap = audioPlayers.First(player => !player.isPlaying);
-        }
-        else
-        {
-            ap = gameObject.AddComponent<AudioSource>();
-            audioPlayers.Add(ap);
-        }
-        return ap;
-    }
-
-    private void PlaySfx(AudioSource audioPlayer, AudioClip acToBePlayed, Transform position = null, float? volume = null, float? pitch = null)
-    {
-      
-        audioPlayer.clip = acToBePlayed;
-
-        if (volume == null)
-        {
-            volume = 1f;
-        }
-
-        if (pitch == null)
-        {
-            pitch = 0f;
-        }
-
-        //audioPlayer.volume = volume ?? 0;
-        audioPlayer.pitch = pitch ?? 0;
-        print("P : " + audioPlayer.pitch);
-        print(audioPlayer.volume);
-
-        if (position == null)
-        {
-            audioPlayer.Play();
-        }
-        else
-        {
-            // This is BAD!!!
-            AudioSource.PlayClipAtPoint(acToBePlayed, position.position, volume.Value);
+            SoundManager.PlaySFX(source, sfxName, pitch);
         }
     }
 }

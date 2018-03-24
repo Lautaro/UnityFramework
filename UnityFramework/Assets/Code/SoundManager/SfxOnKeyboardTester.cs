@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SoundManager;
 
 public class SfxOnKeyboardTester : MonoBehaviour {
 
-    public float pitch = 4;
+    public float pitch;
 
 	// Use this for initialization
 	void Start () {
@@ -15,14 +16,11 @@ public class SfxOnKeyboardTester : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SoundManager.PlaySFX("UI_Success", pitch);
-            pitch++;
-        }
 
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-  
-            pitch=0;
+            gameObject.PlaySFX("Swirl");
+            //  SoundMnager.PlaySFX("Swirl", pitch);
+            // GetComponent<AudioSource>().Play();            
         }
+        
     }
 }

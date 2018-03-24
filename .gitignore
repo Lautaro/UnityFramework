@@ -6,8 +6,7 @@
 Assets/AssetStoreTools*
 
 # Visual Studio 2015 cache directory
-/.vs/
-BriteLite/.vs/
+*/.vs/*
 
 # overrida global git ignores regel att exkludera .obj-filer 
 !.obj
