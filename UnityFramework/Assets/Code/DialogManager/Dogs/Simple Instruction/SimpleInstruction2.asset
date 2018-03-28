@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dea5959910d18d43957443344c19ef3, type: 3}
+  m_Name: SimpleInstruction2
+  m_EditorClassIdentifier: 
+  Title: First step
+  Text: 'This is the second dialog window but the first step. '
+  LeftButtonLink: {fileID: 11400000, guid: a1c04afb3f6d2e84698e9d30a981eaf8, type: 2}
+  LeftButtonLabel: Back
+  LeftButtonMessage: 
+  RightButtonLink: {fileID: 11400000, guid: dcf102063c614314c85dfbab5daafa4e, type: 2}
+  RightButtonLabel: Last page
+  RightButtonMessage: 
