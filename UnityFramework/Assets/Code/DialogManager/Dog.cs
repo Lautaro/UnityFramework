@@ -16,6 +16,24 @@ public class Dog : ScriptableObject
     public Dog RightButtonLink;
     public string RightButtonLabel;
     public string RightButtonMessage;
- 
+
+    public List<Dog> myDogs;
+
+
+    /*
+     
+    public string Title;
+    public string Text;
+    public Dog LeftButtonLink;
+    public string LeftButtonLabel;
+    public string LeftButtonMessage;
+  
+    public Dog RightButtonLink;
+    public string RightButtonLabel;
+    public string RightButtonMessage;
+    
+     
+     */
+
 
 }

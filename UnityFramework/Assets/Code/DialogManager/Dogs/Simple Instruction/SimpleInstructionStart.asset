@@ -19,4 +19,4 @@ MonoBehaviour:
   LeftButtonMessage: Cancel
   RightButtonLink: {fileID: 11400000, guid: caba59333be4a0544b83dea9ecb07dd3, type: 2}
   RightButtonLabel: Continue
-  RightButtonMessage: 
+  RightButtonMessage: Continue from first page

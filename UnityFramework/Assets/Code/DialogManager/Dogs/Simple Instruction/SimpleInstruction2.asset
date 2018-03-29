@@ -18,4 +18,4 @@ MonoBehaviour:
   LeftButtonMessage: 
   RightButtonLink: {fileID: 11400000, guid: dcf102063c614314c85dfbab5daafa4e, type: 2}
   RightButtonLabel: Last page
-  RightButtonMessage: 
+  RightButtonMessage: Going to third page

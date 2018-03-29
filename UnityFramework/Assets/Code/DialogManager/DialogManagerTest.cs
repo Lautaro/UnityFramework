@@ -5,15 +5,11 @@ using UnityEngine.Events;
 
 public class DialogManagerTest : MonoBehaviour {
 
-    public Dog Dog;
-    public UnityEvent WhenFinished;
-    
+ 
+	public void ReceiveMessage(string message)
+    {
+        print("Dogolog sent message: " + message);
 
-    [SerializeField]
-    public Dictionary<string, UnityAction> MyDic = new Dictionary<string, UnityAction>();
+    }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
