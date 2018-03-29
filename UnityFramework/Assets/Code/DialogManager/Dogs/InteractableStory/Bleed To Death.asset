@@ -9,18 +9,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5dea5959910d18d43957443344c19ef3, type: 3}
-  m_Name: SimpleInstruction2
+  m_Name: Bleed To Death
   m_EditorClassIdentifier: 
-  Title: First step
-  Text: 'This is the second dialog window but the first step. '
+  Title: 'FAILURE! '
+  Text: 'Your head wound  have been neglected for too long. Eventually you faint.
+    And then you die shortly after that. Way to go Einstein. '
   DogologOptions:
-  - Dog: {fileID: 11400000, guid: a1c04afb3f6d2e84698e9d30a981eaf8, type: 2}
-    ButtonLabel: Back
+  - Dog: {fileID: 11400000, guid: 55087502c03a85b4381b158b8b173224, type: 2}
+    ButtonLabel: Restart
     ButtonId: Left Button
-    Message: Going back to start
+    Message: Restarting
     EndsDialog: 0
-  - Dog: {fileID: 11400000, guid: dcf102063c614314c85dfbab5daafa4e, type: 2}
-    ButtonLabel: Next
+  - Dog: {fileID: 0}
+    ButtonLabel: Exit Adventure
     ButtonId: Right Button
-    Message: Going to last page
-    EndsDialog: 0
+    Message: Finished
+    EndsDialog: 1

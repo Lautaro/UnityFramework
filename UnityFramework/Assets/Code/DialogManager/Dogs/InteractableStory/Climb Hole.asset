@@ -9,18 +9,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5dea5959910d18d43957443344c19ef3, type: 3}
-  m_Name: SimpleInstruction2
+  m_Name: Climb Hole
   m_EditorClassIdentifier: 
-  Title: First step
-  Text: 'This is the second dialog window but the first step. '
+  Title: 'Alas! '
+  Text: 'You jump and grab the holes ledge. After climbing about a meter up you become
+    dizzy and fall. The second fall also makes you uncontious as well as knocks the
+    bandage of your wound. '
   DogologOptions:
-  - Dog: {fileID: 11400000, guid: a1c04afb3f6d2e84698e9d30a981eaf8, type: 2}
-    ButtonLabel: Back
+  - Dog: {fileID: 0}
+    ButtonLabel: Exit
     ButtonId: Left Button
-    Message: Going back to start
-    EndsDialog: 0
-  - Dog: {fileID: 11400000, guid: dcf102063c614314c85dfbab5daafa4e, type: 2}
-    ButtonLabel: Next
+    Message: 
+    EndsDialog: 1
+  - Dog: {fileID: 11400000, guid: 547c10d0cd27b134ea7dfaa900205405, type: 2}
+    ButtonLabel: Continue
     ButtonId: Right Button
-    Message: Going to last page
+    Message: 
     EndsDialog: 0

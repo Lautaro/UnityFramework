@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dea5959910d18d43957443344c19ef3, type: 3}
+  m_Name: Check Pockets
+  m_EditorClassIdentifier: 
+  Title: Pocket power
+  Text: Even in the dark you know where your pockets are. You put your hand down and
+    find a scarf and a lighter. Also som other stuff but its mostly useless and or
+    embaressing.
+  DogologOptions:
+  - Dog: {fileID: 0}
+    ButtonLabel: (Exit)
+    ButtonId: Left Button
+    Message: Stopping adventure
+    EndsDialog: 1
+  - Dog: {fileID: 11400000, guid: bfb21be2925cba148bc0f6f57946db9a, type: 2}
+    ButtonLabel: Bandage head
+    ButtonId: Right Center Button
+    Message: 
+    EndsDialog: 0
+  - Dog: {fileID: 11400000, guid: 547c10d0cd27b134ea7dfaa900205405, type: 2}
+    ButtonLabel: Use lighter
+    ButtonId: Right Button
+    Message: 
+    EndsDialog: 0

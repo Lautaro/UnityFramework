@@ -9,20 +9,13 @@ public class Dog : ScriptableObject
 {    
     public string Title;
     public string Text;
-    public Dog LeftButtonLink;
-    public string LeftButtonLabel;
-    public string LeftButtonMessage;
-  
-    public Dog RightButtonLink;
-    public string RightButtonLabel;
-    public string RightButtonMessage;
-
-    public List<Dog> myDogs;
+        
+    public List<DogologOption> DogologOptions;
 
 
     /*
      
-    public string Title;
+     public string Title;
     public string Text;
     public Dog LeftButtonLink;
     public string LeftButtonLabel;
@@ -34,6 +27,15 @@ public class Dog : ScriptableObject
     
      
      */
+     
+}
 
-
+[Serializable]
+public class DogologOption
+{
+    public Dog Dog;
+    public string ButtonLabel;
+    public string ButtonId;
+    public string Message;
+    public bool EndsDialog;
 }

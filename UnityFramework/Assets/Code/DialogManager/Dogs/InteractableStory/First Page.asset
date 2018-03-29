@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dea5959910d18d43957443344c19ef3, type: 3}
+  m_Name: First Page
+  m_EditorClassIdentifier: 
+  Title: 'Oh no! '
+  Text: You wake up in a dark cave. Your head is bleading. You also remember that
+    you had a backpack with your belongings, but its no longer on your back. What
+    do you do?
+  DogologOptions:
+  - Dog: {fileID: 0}
+    ButtonLabel: (End Adventure)
+    ButtonId: Left Button
+    Message: 
+    EndsDialog: 1
+  - Dog: {fileID: 11400000, guid: 026cd10c1ac4c5a419447e4dcdfe6228, type: 2}
+    ButtonLabel: Check Pockets
+    ButtonId: Left Center Button
+    Message: Checking pockets
+    EndsDialog: 0
+  - Dog: {fileID: 0}
+    ButtonLabel: 
+    ButtonId: 
+    Message: 
+    EndsDialog: 0
+  - Dog: {fileID: 11400000, guid: 547c10d0cd27b134ea7dfaa900205405, type: 2}
+    ButtonLabel: Find backpack
+    ButtonId: Right Button
+    Message: Looking for backpack
+    EndsDialog: 0

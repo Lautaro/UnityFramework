@@ -9,18 +9,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5dea5959910d18d43957443344c19ef3, type: 3}
-  m_Name: Start
+  m_Name: Find Backpack
   m_EditorClassIdentifier: 
-  Title: 'Welcome! '
-  Text: Your adventure is about to start. Shall we?...
+  Title: A pack for the back
+  Text: Your backpack contains your mobil phone! Whatcha wanna do next?
   DogologOptions:
   - Dog: {fileID: 0}
-    ButtonLabel: Exit
+    ButtonLabel: eXIT
     ButtonId: Left Button
-    Message: Cancel
+    Message: 
     EndsDialog: 1
-  - Dog: {fileID: 11400000, guid: 55087502c03a85b4381b158b8b173224, type: 2}
-    ButtonLabel: Lets go
+  - Dog: {fileID: 11400000, guid: 0f34a1dc8b4d3904e923362ecc4036cc, type: 2}
+    ButtonLabel: Phone
+    ButtonId: Left Center Button
+    Message: 
+    EndsDialog: 0
+  - Dog: {fileID: 11400000, guid: 547c10d0cd27b134ea7dfaa900205405, type: 2}
+    ButtonLabel: Climb up the hole
     ButtonId: Right Button
-    Message: Starting adventure
+    Message: 
     EndsDialog: 0

@@ -14,9 +14,14 @@ MonoBehaviour:
   Title: 'Welcome! '
   Text: 'This will take you through very few and nonsensical steps. You may quit in
     the process. Seriousl, there will only be three steps all together. '
-  LeftButtonLink: {fileID: 0}
-  LeftButtonLabel: Cancel
-  LeftButtonMessage: Cancel
-  RightButtonLink: {fileID: 11400000, guid: caba59333be4a0544b83dea9ecb07dd3, type: 2}
-  RightButtonLabel: Continue
-  RightButtonMessage: Continue from first page
+  DogologOptions:
+  - Dog: {fileID: 11400000, guid: caba59333be4a0544b83dea9ecb07dd3, type: 2}
+    ButtonLabel: Start instructions
+    ButtonId: Right Button
+    Message: Going to second page
+    EndsDialog: 0
+  - Dog: {fileID: 0}
+    ButtonLabel: Cancel
+    ButtonId: Left Button
+    Message: 'Canceling '
+    EndsDialog: 1

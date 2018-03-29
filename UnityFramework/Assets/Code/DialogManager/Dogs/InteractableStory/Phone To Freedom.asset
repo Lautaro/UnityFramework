@@ -9,19 +9,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5dea5959910d18d43957443344c19ef3, type: 3}
-  m_Name: SimpleInstruction3
+  m_Name: Phone To Freedom
   m_EditorClassIdentifier: 
-  Title: At the end
-  Text: Now you are done. This is it. You may click right button to exit dialog or
-    go back for moar. MOAR!
+  Title: 'Contact! '
+  Text: 'You phone for help and while you wait to be rescued you even have batteries
+    left to instagram some dramatic photos of your escape. All your friends think
+    you are really cool. Congratulations! You escaped the cave of certain death! '
   DogologOptions:
-  - Dog: {fileID: 11400000, guid: caba59333be4a0544b83dea9ecb07dd3, type: 2}
-    ButtonLabel: Back
+  - Dog: {fileID: 11400000, guid: 55087502c03a85b4381b158b8b173224, type: 2}
+    ButtonLabel: Restart adventure
     ButtonId: Left Button
-    Message: Going back to page 2
+    Message: 
     EndsDialog: 0
   - Dog: {fileID: 0}
-    ButtonLabel: Finished
+    ButtonLabel: Exit
     ButtonId: Right Button
-    Message: Finished and closing
+    Message: 
     EndsDialog: 1

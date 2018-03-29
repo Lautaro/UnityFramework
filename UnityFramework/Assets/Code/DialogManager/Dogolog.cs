@@ -7,10 +7,10 @@ using UnityEngine.UI;
 public class Dogolog : MonoBehaviour
 {
 
-    public Button LeftButton;
-    public Button RightButton;
-    public Text Text;
-    public Text Title;
+
+    public List<Button> Buttons;
+    public Text TextHolder;
+    public Text TitleHolder;
 
     public Dog StartDog;
     UnityEvent LeftButtonClick;
@@ -40,21 +40,39 @@ public class Dogolog : MonoBehaviour
             CloseDogolog();
         }
 
-        Text.text = CurrentDog.Text;
-        Title.text = CurrentDog.Title;
-        RightButton.GetComponentInChildren<Text>().text = CurrentDog.RightButtonLabel;
-        LeftButton.GetComponentInChildren<Text>().text = CurrentDog.LeftButtonLabel;
+        foreach (Button button in Buttons)
+        {
+            button.gameObject.SetActive(false);
+            button.onClick.RemoveAllListeners();
+         }
 
-        RightButton.onClick.RemoveAllListeners();
-        LeftButton.onClick.RemoveAllListeners();
+        foreach (DogologOption option in CurrentDog.DogologOptions)
+        {
+            var button = Buttons.Find(b => b.name == option.ButtonId);
+            if (button == null && !string.IsNullOrEmpty( option.ButtonId ))
+            {
+                Debug.Log("WARNING! A DogologOptions button id is not found among available buttons. Button looked for: " + option.ButtonId );
 
-        SetupButton(LeftButton, CurrentDog.LeftButtonLink,CurrentDog.LeftButtonMessage);
-        SetupButton(RightButton, CurrentDog.RightButtonLink, CurrentDog.RightButtonMessage);
+            }
+            else
+            {
+                SetupButton(button, option.Dog,option.ButtonLabel, option.Message);
+            }
+        }
+
+        TextHolder.text = CurrentDog.Text;
+        TitleHolder.text = CurrentDog.Title;
 
     }
 
-    private void SetupButton(Button button, Dog dogLink, string message)
+    private void SetupButton(Button button, Dog dogLink,string buttonLabel, string message)
     {
+        if (button == null)
+        {
+            return;
+        }
+        button.gameObject.SetActive(true);
+        button.GetComponentInChildren<Text>().text = buttonLabel;
         button.onClick.AddListener(delegate ()
         {
             ButtonPressed(message, dogLink);
@@ -88,7 +106,7 @@ public class Dogolog : MonoBehaviour
     }
 
     void CloseDogolog()
-    {
+    {   
         gameObject.SetActive(false);
     }
 

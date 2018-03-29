@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dea5959910d18d43957443344c19ef3, type: 3}
+  m_Name: Use Lighter
+  m_EditorClassIdentifier: 
+  Title: 'Out of the darkness '
+  Text: 'Finally you can see. You are in a cavelike pit. You can see a hole in the
+    roof where you probably fell from. You also see your backpack in a corner. '
+  DogologOptions:
+  - Dog: {fileID: 0}
+    ButtonLabel: Exit
+    ButtonId: Left Button
+    Message: 
+    EndsDialog: 1
+  - Dog: {fileID: 11400000, guid: 17a86310c35d54e4b9b06b36ae130d75, type: 2}
+    ButtonLabel: Climb hole
+    ButtonId: Right Center Button
+    Message: 
+    EndsDialog: 0
+  - Dog: {fileID: 11400000, guid: 5e784d71ada6e944ca471da139fbe45d, type: 2}
+    ButtonLabel: Get backpack
+    ButtonId: Right Button
+    Message: 
+    EndsDialog: 0
