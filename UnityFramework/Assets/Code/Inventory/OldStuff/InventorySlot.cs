@@ -18,21 +18,28 @@ public class InventorySlot : ItemContainer {
 	// Use this for initialization
 	void Start () {
 
-        Icon = transform.Find("Icon").GetComponent<Image>();
-        AmountText = transform.Find("Amount").GetComponentInChildren<Text>();
-        AmountText.text = Stack.amount.ToString();
+        //Icon = transform.Find("Icon").GetComponent<Image>();
+        //AmountText = transform.Find("Amount").GetComponentInChildren<Text>();
+        //AmountText.text = Stack.Amount.ToString();
 
     }
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            print("Space");
+            Stack = new RedMineral();
+        }
+
         if (Stack != null)
         {
            // Icon.gameObject.SetActive(false);
-            Icon.sprite = Stack.Sprite;
-            Stack.amount = Amount;
+            Icon.sprite = Resources.Load<Sprite>(Stack.GetIconSpriteFilePath());
+            
 
-            Amount = Stack.amount;
+            Amount = Stack.Amount;
         }
 	}
 }

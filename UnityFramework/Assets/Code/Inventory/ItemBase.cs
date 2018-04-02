@@ -14,10 +14,9 @@ public class ItemBase  {
         {
             return maxAmount;
         }
-
     }
 
-    int amount;
+    int amount = 23;
     public int Amount
     {
         get
@@ -31,6 +30,7 @@ public class ItemBase  {
         }
     }
 
+    internal string spriteDirectoryPath = "InventoryIcons/";
     string spriteName;
     public string SpriteName
     {
@@ -45,4 +45,8 @@ public class ItemBase  {
         }
     }
     
+    public string GetIconSpriteFilePath()
+    {
+        return spriteDirectoryPath + spriteName;
+    }
 }

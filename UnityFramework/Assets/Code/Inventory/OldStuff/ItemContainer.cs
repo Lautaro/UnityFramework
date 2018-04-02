@@ -6,22 +6,43 @@ using UnityEngine.UI;
 /// <summary>
 /// A container where a stack of items is kept
 /// </summary>
-public class ItemContainer : MonoBehaviour {
+public class ItemContainer : MonoBehaviour
+{
 
-   [SerializeField]
-    public ItemType Stack;
-    
-   /* public void MergeSlots(ItemContainer mergeStack)
+    [SerializeField]
+    private ItemBase stack;
+
+    public ItemBase Stack
     {
-        if (mergeStack.Stack.name == mergeStack.Stack.name)
+        get
         {
-            Stack.DoTransaction(mergeStack.Stack);
+            return stack;
         }
-        else
+
+        set
         {
-            var tempStash = Stack;
-            Stack = mergeStack.Stack;
-            mergeStack.Stack = tempStash;
+            print("New stack set");
+            stack = value;
         }
-    } */
+    }
+
+
+    private void Update()
+    {
+ 
+    }
+
+    /* public void MergeSlots(ItemContainer mergeStack)
+     {
+         if (mergeStack.Stack.name == mergeStack.Stack.name)
+         {
+             Stack.DoTransaction(mergeStack.Stack);
+         }
+         else
+         {
+             var tempStash = Stack;
+             Stack = mergeStack.Stack;
+             mergeStack.Stack = tempStash;
+         }
+     } */
 }
